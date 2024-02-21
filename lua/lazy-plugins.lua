@@ -1,3 +1,4 @@
+--
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -16,6 +17,16 @@ require('lazy').setup({
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
+  { "catppuccin/nvim", name = "catppuccin",
+    priority = 1000,
+    config=function ()
+    
+      require("catppuccin").setup({
+        transparent_background = true, 
+      })
+    end,
+
+  },
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -32,7 +43,27 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
+  -- plugins for cp
 
+{
+	'roirepus/competitest.nvim',
+	dependencies = 'MunifTanjim/nui.nvim',
+	config = function()
+      require('competitest').setup{
+      runner_ui={
+        interface="popup",
+      },
+    --  compile_directory=".",
+      compile_command={
+          cpp= {exec = "g++", args = {"-Wall", "-std=c++2b","$(FNAME)", "-o", "$(FNOEXT)" }}, 
+      },
+      testcases_directory= "./testcases",
+      testcases_use_single_file= true,
+    }
+
+    end,
+  },
+ 
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -159,7 +190,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'auto',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
