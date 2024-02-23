@@ -3,6 +3,7 @@
 -- NOTE: You can change these options as you wish!
 -- Swap file settings
 vim.opt.swapfile = false
+vim.opt.cmdheight = 0
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -12,6 +13,7 @@ vim.wo.relativenumber = true
 
 --colors
 vim.cmd("colorscheme catppuccin")
+vim.api.nvim_set_hl(0, 'LineNr', { fg = "white" })
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -40,6 +42,8 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true

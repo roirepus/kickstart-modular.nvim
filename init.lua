@@ -72,10 +72,11 @@ require 'lsp-setup'
 -- (completion)
 require 'cmp-setup'
 
+--mappings
+require 'mappings'
+
 --debugger
-require 'kickstart.plugins.debug'
 
 --autoformatting
-require 'kickstart.plugins.autoformat'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

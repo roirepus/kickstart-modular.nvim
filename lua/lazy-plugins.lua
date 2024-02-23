@@ -7,7 +7,10 @@
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -17,15 +20,21 @@ require('lazy').setup({
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
-  { "catppuccin/nvim", name = "catppuccin",
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-    config=function ()
-    
+    config = function()
       require("catppuccin").setup({
-        transparent_background = true, 
+        transparent_background = true,
       })
     end,
 
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
   },
   {
     -- LSP Configuration & Plugins
@@ -37,7 +46,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -45,25 +54,29 @@ require('lazy').setup({
   },
   -- plugins for cp
 
-{
-	'roirepus/competitest.nvim',
-	dependencies = 'MunifTanjim/nui.nvim',
-	config = function()
-      require('competitest').setup{
-      runner_ui={
-        interface="popup",
-      },
-    --  compile_directory=".",
-      compile_command={
-          cpp= {exec = "g++", args = {"-Wall", "-std=c++2b","$(FNAME)", "-o", "$(FNOEXT)" }}, 
-      },
-      testcases_directory= "./testcases",
-      testcases_use_single_file= true,
-    }
 
+  {
+    'roirepus/competitest.nvim',
+    dependencies = 'MunifTanjim/nui.nvim',
+    config = function()
+      require('competitest').setup {
+        runner_ui = {
+          interface = "popup",
+        },
+        compile_command = {
+          cpp = { exec = "g++", args = { "-Wall", "-std=c++2b", "$(FNAME)", "-o", "./compiled/$(FNOEXT)" } },
+        },
+        running_directory = "./compiled",
+        running_command = {
+          cpp = { exec = "./compiled/$(FNOEXT)" },
+        },
+        testcases_directory = "./testcases",
+        testcases_use_single_file = true,
+        vim.keymap.set("n", ":O atcp", ":O atc<CR>", {}),
+      }
     end,
   },
- 
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -93,7 +106,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -242,8 +255,8 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
