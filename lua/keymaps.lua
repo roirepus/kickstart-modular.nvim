@@ -1,4 +1,4 @@
--- [[ Basic Keymaps ]]
+﻿-- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -25,6 +25,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-vim.keymap.set("n", ":O atcp", ":O atc")
-
+--nvim tree keymaps
+vim.keymap.set("n", "<C-n>", ":NvimTreeOpen<CR>")
+--competiTest keymaps
+vim.keymap.set("n", ":crun<cr>", ":CompetiTest run<CR>")
+vim.keymap.set("n", ":catc<cr>", ":CompetiTest add_testcase<CR>")
+vim.keymap.set("n", ":cetc<cr>", ":CompetiTest edit_testcase<CR>")
+vim.keymap.set("n", ":cgetqn<cr>", ":CompetiTest receive problem<CR>")
 -- vim: ts=2 sts=2 sw=2 et

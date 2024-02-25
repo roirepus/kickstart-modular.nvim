@@ -11,6 +11,8 @@ require('lazy').setup({
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
+  -- lazy.nvim
+
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -20,7 +22,22 @@ require('lazy').setup({
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
+  ---------------------------------------------------------------------------------theme---------------------------------
   {
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require('onedark').setup {
+        -- Set a style preset. 'dark' is default.
+        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
+      }
+      require('onedark').load()
+    end,
+  },
+  {
+
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -30,6 +47,9 @@ require('lazy').setup({
       })
     end,
 
+  },
+  {
+    "ThePrimeagen/vim-be-good",
   },
   {
     'windwp/nvim-autopairs',
@@ -52,11 +72,12 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
+
   -- plugins for cp
 
 
   {
-    'roirepus/competitest.nvim',
+    'xeluxee/competitest.nvim',
     dependencies = 'MunifTanjim/nui.nvim',
     config = function()
       require('competitest').setup {
@@ -72,7 +93,6 @@ require('lazy').setup({
         },
         testcases_directory = "./testcases",
         testcases_use_single_file = true,
-        vim.keymap.set("n", ":O atcp", ":O atc<CR>", {}),
       }
     end,
   },
@@ -96,17 +116,18 @@ require('lazy').setup({
       },
       'saadparwaiz1/cmp_luasnip',
 
-      -- Adds LSP completion capabilities
+      --    -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
 
-      -- Adds a number of user-friendly snippets
+      --    -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
   },
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
+  --------------------------------------------------------------------------------------------------git---------------------------------------------------
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -181,20 +202,8 @@ require('lazy').setup({
       end,
     },
   },
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-    end,
-  },
 
   {
     -- Set lualine as statusline
@@ -221,9 +230,20 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
+  ------------------------------------------------------------------------------------finder,nav,tree plugins
+  --nvim tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require('nvim-tree').setup {}
+    end,
+  },
   -- Fuzzy Finder (files, lsp, etc)
   {
+
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
@@ -267,4 +287,5 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 
+--
 -- vim: ts=2 sts=2 sw=2 et
