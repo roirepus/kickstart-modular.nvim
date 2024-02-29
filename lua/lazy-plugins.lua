@@ -7,10 +7,7 @@
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-  {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
+
   -- lazy.nvim
 
   -- Git related plugins
@@ -48,12 +45,15 @@ require('lazy').setup({
     end,
 
   },
+  -- lazy.nvim
+
+  ----------------------------------------------------------------------------------------------------------------
   {
     "ThePrimeagen/vim-be-good",
   },
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    -- event = "lazy",
     opts = {} -- this is equalent to setup({}) function
   },
   {
@@ -74,6 +74,31 @@ require('lazy').setup({
   },
 
   -- plugins for cp
+  {
+    "CRAG666/code_runner.nvim",
+    config = function()
+      require("code_runner").setup {
+
+        mode = "float",
+        float = {
+          border = "rounded",
+        },
+        filetype = {
+          cpp = {
+            "cd $dir &&",
+            "g++ $fileName -Wall -std=c++2b ",
+            "-o $dir/compiled/$fileNameWithoutExt &&",
+            "$dir/compiled/$fileNameWithoutExt",
+          },
+        },
+
+
+
+      }
+    end
+  },
+
+
 
 
   {
@@ -122,7 +147,9 @@ require('lazy').setup({
 
       --    -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
     },
+
   },
 
   -- Useful plugin to show you pending keybinds.

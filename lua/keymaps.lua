@@ -25,11 +25,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
---nvim tree keymaps
-vim.keymap.set("n", "<C-n>", ":NvimTreeOpen<CR>")
---competiTest keymaps
-vim.keymap.set("n", ":crun<cr>", ":CompetiTest run<CR>")
-vim.keymap.set("n", ":catc<cr>", ":CompetiTest add_testcase<CR>")
-vim.keymap.set("n", ":cetc<cr>", ":CompetiTest edit_testcase<CR>")
-vim.keymap.set("n", ":cgetqn<cr>", ":CompetiTest receive problem<CR>")
+--nvim-tree keymaps
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>tf", ":NvimTreeFocus<CR>")
+
+--competitest keymaps
+vim.keymap.set("n", "<leader>run", ":CompetiTest run<CR>")
+vim.keymap.set("n", "<leader>atc", ":CompetiTest add_testcase<CR>")
+vim.keymap.set("n", "<leader>etc", ":CompetiTest edit_testcase<CR>")
+vim.keymap.set("n", "<leader>qn", ":CompetiTest receive problem<CR>")
+--code_runner keymaps
+vim.keymap.set("n", "<leader>cr", ":RunCode<CR>")
+vim.keymap.set("n", "<leader>er", ":RunClose<CR>")
+
 -- vim: ts=2 sts=2 sw=2 et

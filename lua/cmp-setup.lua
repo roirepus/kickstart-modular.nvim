@@ -14,6 +14,9 @@ cmp.setup {
   completion = {
     completeopt = 'menu,menuone,noinsert',
   },
+  cmdline = {
+    ignore_cmds = { 'Man', '!', ':' }
+  },
 
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),

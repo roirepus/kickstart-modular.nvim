@@ -4,6 +4,7 @@
 -- Swap file settings
 vim.opt.swapfile = false
 vim.opt.cmdheight = 0
+vim.opt.fcs={eob=" "}
 -- Set highlight on search
 vim.o.hlsearch = false
 
