@@ -116,6 +116,8 @@ require('lazy').setup({
         running_command = {
           cpp = { exec = "./compiled/$(FNOEXT)" },
         },
+        template_file = "../../template.cpp",
+        evaluate_template_modifiers = true,
         testcases_directory = "./testcases",
         testcases_use_single_file = true,
       }
